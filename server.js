@@ -9,12 +9,14 @@ const JWT = require("jsonwebtoken");
 
 const userRouter = require("./src/routes/userRouter");
 const productRouter = require("./src/routes/productsRouter");
+const cartRouter = require('./src/routes/cartRouter')
+const orderRouter = require('./src/routes/checkoutRouter')
 
 require("./src/controllers/Auth");
 
 const app = express();
 
-app.use(morgan("dev "));
+app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,6 +51,8 @@ app.post("/login", (req, res, next) => {
 
 app.use(userRouter);
 app.use(productRouter);
+app.use(cartRouter)
+app.use(orderRouter)
 
 app.get("/", (req, res) => {
   res.send("hello");
