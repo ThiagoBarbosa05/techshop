@@ -34,8 +34,8 @@ app.use(passport.session());
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err || !user) {
-      return res.status(400).json({
-        message: "Something is not right",
+      return res.status(401).json({
+        message: "Username and password does not exist.",
         user: user,
       });
     }
